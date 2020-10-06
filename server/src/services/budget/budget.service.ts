@@ -1,6 +1,6 @@
-import { BaseService } from './base.service';
-import Budget from '../models/budget.model';
-import { IBudget } from '../models/types';
+import { BaseService } from '../base.service';
+import Budget from '../../models/budget/budget.model';
+import { IBudget } from '../../models/types';
 
 export class BudgetService extends BaseService {
   async deleteOne(args: { id: string }): Promise<any> {

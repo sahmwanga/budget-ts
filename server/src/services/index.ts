@@ -1,5 +1,5 @@
-import { CategoryService } from './category.service';
-import { BudgetService } from './budget.service';
-import { ExpenseService } from './expense.service';
+import { CategoryService } from './budget/category.service';
+import { BudgetService } from './budget/budget.service';
+import { ExpenseService } from './budget/expense.service';
 
 export { CategoryService, BudgetService, ExpenseService };
