@@ -1,7 +1,7 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
 interface ExpenseDoc extends Document {
-  expenseDate: string;
+  expenseDate: Date;
   amount: number;
   description: string;
   categoryId: Types.ObjectId;
@@ -10,7 +10,7 @@ interface ExpenseDoc extends Document {
 
 const expenseSchema = new Schema(
   {
-    expenseDate: String,
+    expenseDate: Date,
     amount: Number,
     description: String,
     categoryId: { type: Types.ObjectId, ref: 'Category' },

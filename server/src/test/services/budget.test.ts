@@ -1,11 +1,10 @@
 import { BudgetService, CategoryService } from '../../services';
-import { IBudget, ICategory } from '../../models/types';
+import { IBudget } from '../../models/types';
 const budgetService = new BudgetService();
-const categoryService = new CategoryService();
 
 import { Types } from 'mongoose';
 
-import { budget, category } from './dumy-data';
+import { budget, category, transfer } from './dumy-data';
 
 describe('budget test', () => {
   test('should create budget', async () => {
@@ -55,7 +54,7 @@ describe('budget test', () => {
     expect(deleted).toEqual({
       n: 0,
       ok: 1,
-      deleteCount: 0,
+      deletedCount: 0,
     });
   });
 
@@ -67,5 +66,53 @@ describe('budget test', () => {
       response2.id,
     ]);
     expect(deleted).toBeTruthy();
+  });
+});
+
+describe('Test Transactions', () => {
+  test('should create transaction history', async () => {
+    const response = await budgetService.createTransaction(transfer);
+    expect(response).toEqual(expect.objectContaining(transfer));
+  });
+
+  test('should transfer amount from one category to another', async () => {
+    const budget1 = await budgetService.create({
+      ...budget,
+      categoryId: Types.ObjectId(),
+    });
+
+    const budget2 = await budgetService.create({
+      ...budget,
+      categoryId: Types.ObjectId(),
+    });
+
+    await budgetService.transfer({
+      ...transfer,
+      transferFrom: budget1.categoryId,
+      transferTo: budget2.categoryId,
+    });
+
+    const transferDetails = await budgetService.getTransfers();
+
+    const bAmount1 = await budgetService.findOne({
+      _id: budget1._id,
+    });
+
+    const bAmount2 = await budgetService.findOne({
+      _id: budget2._id,
+    });
+
+    console.log(bAmount1);
+    console.log(bAmount2);
+
+    expect(transferDetails[0]).toEqual(
+      expect.objectContaining({
+        amount: transfer.amount,
+        transferTo: transfer.transferTo,
+        transferFrom: transfer.transferFrom,
+      })
+    );
+    expect(bAmount1.amount).toEqual(0);
+    expect(bAmount2.amount).toEqual(2000);
   });
 });

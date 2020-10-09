@@ -1,11 +1,10 @@
-import { BaseService } from './base.service';
-import Category from '../models/category.model';
-import { ICategory } from '../models/types';
+import { BaseService } from '../base.service';
+import Category from '../../models/budget/category.model';
+import Transfer from '../../models/transfer.model';
+import { ICategory, ITransfer } from '../../models/types';
+import { TransferBaseService } from '../transfer.base';
 
-export class CategoryService extends BaseService {
-  constructor() {
-    super();
-  }
+export class CategoryService implements BaseService {
   async create(args: ICategory): Promise<any> {
     return await Category.create(args);
   }

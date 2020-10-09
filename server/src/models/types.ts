@@ -9,15 +9,15 @@ export interface ICategory {
 export interface IBudget {
   categoryId: Types.ObjectId;
   amount: number;
-  budgetDate: string;
+  budgetDate: Date;
   recurring: boolean;
-  recurringDate: string;
+  recurringDate: Date;
   userAccountId: number;
   userId: string;
 }
 
 export interface IExpense {
-  expenseDate: string;
+  expenseDate: Date;
   amount: number;
   description: string;
   userId: string;
@@ -25,10 +25,11 @@ export interface IExpense {
 }
 
 export interface ITransfer {
-  transferDate: string;
+  transferDate: Date;
   amount: number;
-  transferFrom: string;
-  transerTo: string;
+  transferFrom: Types.ObjectId;
+  transferTo: Types.ObjectId;
   type: string;
-  userId: 10;
+  userId: string;
+  userAccountId: number;
 }

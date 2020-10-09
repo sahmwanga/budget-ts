@@ -3,9 +3,9 @@ import { Schema, model, Document, Types } from 'mongoose';
 interface BudgetDoc extends Document {
   categoryId: Types.ObjectId;
   amount: number;
-  budgetDate: string;
+  budgetDate: Date;
   recurring: boolean;
-  recurringDate: string;
+  recurringDate: Date;
   userAccountId: number;
   userId: string;
 }
@@ -14,7 +14,7 @@ const budgetSchema = new Schema(
   {
     categoryId: { type: Types.ObjectId, ref: 'Category' },
     amount: { type: Number, required: true },
-    budgetDate: { type: String, required: true },
+    budgetDate: { type: Date, required: true },
     recurring: { type: Boolean },
     recurringDate: { type: Date },
     userAccountId: { type: Number },

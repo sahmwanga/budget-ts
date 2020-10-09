@@ -1,6 +1,6 @@
-import { BaseService } from './base.service';
-import Expense from '../models/expense.model';
-import { IExpense } from '../models/types';
+import { BaseService } from '../base.service';
+import Expense from '../../models/budget/expense.model';
+import { IExpense } from '../../models/types';
 
 export class ExpenseService extends BaseService {
   constructor() {

@@ -1,6 +1,4 @@
 import { ExpenseService } from '../../services';
-import { Types } from 'mongoose';
-import { response } from 'express';
 const expenseService = new ExpenseService();
 
 import { expenses } from './dumy-data';

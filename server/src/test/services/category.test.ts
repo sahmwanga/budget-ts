@@ -1,6 +1,4 @@
 import { CategoryService } from '../../services';
-import { Types } from 'mongoose';
-import { response } from 'express';
 const categoryService = new CategoryService();
 
 import { category } from './dumy-data';
